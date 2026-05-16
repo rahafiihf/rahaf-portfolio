@@ -181,12 +181,12 @@ export function Portfolio() {
           </Reveal>
           <div className="mx-auto grid max-w-3xl gap-6 md:grid-cols-2">
             {projects.map((p, i) => (
-              <Reveal key={p.url} delay={i * 100}>
+              <Reveal key={p.url} delay={i * 120} variant={i % 2 === 0 ? "left" : "right"}>
                 <a
                   href={p.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group block cyber-border card-hover rounded-lg bg-card p-6"
+                  className="group block cyber-border card-hover rounded-lg bg-card p-6 h-full"
                 >
                   <h3 className="mb-3 text-lg font-bold text-foreground transition-colors group-hover:text-primary">
                     {pick(p.title, lang)}
@@ -198,14 +198,14 @@ export function Portfolio() {
                     {p.tags.map((tag) => (
                       <span
                         key={tag.en}
-                        className="rounded-full bg-primary/10 px-2 py-1 font-body text-xs text-primary"
+                        className="tag-hover rounded-full bg-primary/10 px-2 py-1 font-body text-xs text-primary"
                       >
                         {pick(tag, lang)}
                       </span>
                     ))}
                   </div>
                   <span className="flex items-center gap-2 text-sm text-primary group-hover:underline">
-                    <ExternalLink className="h-4 w-4" />
+                    <ExternalLink className="h-4 w-4 icon-pop" />
                     {t("view_project")}
                   </span>
                 </a>
