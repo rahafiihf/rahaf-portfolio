@@ -102,18 +102,18 @@ export function Portfolio() {
                 const left = idx % 2 === 0;
                 const Icon = journeyIcons[entry.icon];
                 return (
-                  <Reveal key={entry.year} delay={idx * 80}>
-                    <div className="relative">
+                  <Reveal key={entry.year} delay={idx * 80} variant={left ? "left" : "right"}>
+                    <div className="relative group">
                       <div className="timeline-dot top-8 hidden md:block animate-glow-pulse" />
                       <div className={`md:w-[45%] ${left ? "md:mr-auto md:pr-12" : "md:ml-auto md:pl-12"}`}>
                         <div className="cyber-border card-hover rounded-lg bg-card p-6">
                           <div className="mb-4 flex items-center gap-3">
-                            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
+                            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 icon-pop">
                               <Icon className="h-5 w-5 text-primary" />
                             </div>
                             <span className="font-body text-lg font-bold text-primary">{entry.year}</span>
                           </div>
-                          <h3 className="mb-3 text-xl font-bold text-foreground">{pick(entry.title, lang)}</h3>
+                          <h3 className="mb-3 text-xl font-bold text-foreground transition-colors group-hover:text-primary">{pick(entry.title, lang)}</h3>
                           <p className="leading-relaxed text-muted-foreground">{pick(entry.body, lang)}</p>
                         </div>
                       </div>
