@@ -157,18 +157,13 @@ export function Portfolio() {
           </Reveal>
           <div className="space-y-6">
             {skills.map((s, i) => (
-              <Reveal key={s.name.en} delay={i * 80}>
+              <Reveal key={s.name.en} delay={i * 80} variant="left">
                 <div>
                   <div className="mb-2 flex justify-between">
                     <span className="font-medium text-foreground">{pick(s.name, lang)}</span>
                     <span className="font-body text-sm text-primary">{s.level}%</span>
                   </div>
-                  <div className="h-2 overflow-hidden rounded-full bg-secondary">
-                    <div
-                      className="h-full rounded-full bg-gold-gradient transition-all duration-1000"
-                      style={{ width: `${s.level}%` }}
-                    />
-                  </div>
+                  <RevealBar level={s.level} delay={i * 80 + 200} />
                 </div>
               </Reveal>
             ))}
