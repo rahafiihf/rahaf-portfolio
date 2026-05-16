@@ -2,7 +2,7 @@ import { Mail, Phone, Linkedin, Languages, Shield, Code, ChevronDown, Sparkles, 
 import { useI18n } from "@/lib/i18n";
 import { journey, skills, projects, pick } from "@/lib/portfolio-data";
 import { Typing } from "./Typing";
-import { Reveal } from "./Reveal";
+import { Reveal, RevealBar } from "./Reveal";
 
 const journeyIcons = {
   sparkles: Sparkles,
