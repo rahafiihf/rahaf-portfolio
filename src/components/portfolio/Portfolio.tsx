@@ -265,7 +265,7 @@ function ContactRow({
       rel={external ? "noopener noreferrer" : undefined}
       className="group cyber-border card-hover flex items-center gap-4 rounded-lg bg-card p-5"
     >
-      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 transition-colors group-hover:bg-primary/20">
+      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 transition-colors group-hover:bg-primary/20 icon-pop">
         <Icon className="h-5 w-5 text-primary" />
       </div>
       <div>
