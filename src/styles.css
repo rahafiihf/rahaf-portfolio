@@ -161,8 +161,14 @@
     box-shadow: var(--shadow-gold);
   }
 
-  .card-hover { transition: transform 0.3s var(--transition-smooth), box-shadow 0.3s var(--transition-smooth); }
-  .card-hover:hover { transform: translateY(-4px); }
+  .card-hover { transition: transform 0.4s var(--transition-smooth), box-shadow 0.4s var(--transition-smooth), border-color 0.4s var(--transition-smooth); }
+  .card-hover:hover { transform: translateY(-6px) scale(1.015); box-shadow: var(--shadow-gold), var(--shadow-elegant); }
+
+  .icon-pop { transition: transform 0.4s var(--transition-smooth), color 0.3s var(--transition-smooth); }
+  .group:hover .icon-pop { transform: scale(1.15) rotate(-4deg); }
+
+  .tag-hover { transition: transform 0.3s var(--transition-smooth), background-color 0.3s var(--transition-smooth), color 0.3s var(--transition-smooth); }
+  .tag-hover:hover { transform: translateY(-2px); background: color-mix(in oklab, var(--primary) 25%, transparent); }
 
   .section-heading {
     font-size: clamp(2rem, 5vw, 3rem);
