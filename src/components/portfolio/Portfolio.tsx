@@ -224,17 +224,21 @@ export function Portfolio() {
             </h2>
           </Reveal>
           <div className="grid gap-4">
-            <ContactRow icon={Mail} label={t("email_label")} value="ruiiihf@gmail.com" href="mailto:ruiiihf@gmail.com" />
-            <ContactRow icon={Phone} label={t("phone_label")} value="0501780242" href="tel:+966501780242" />
-            <ContactRow
-              icon={Linkedin}
-              label={t("linkedin_label")}
-              value={t("linkedin_value")}
-              href="https://www.linkedin.com/in/rahaf-alshaibani-bb3001329"
-              external
-            />
+            <Reveal delay={0} variant="left"><ContactRow icon={Mail} label={t("email_label")} value="ruiiihf@gmail.com" href="mailto:ruiiihf@gmail.com" /></Reveal>
+            <Reveal delay={120} variant="right"><ContactRow icon={Phone} label={t("phone_label")} value="0501780242" href="tel:+966501780242" /></Reveal>
+            <Reveal delay={240} variant="left">
+              <ContactRow
+                icon={Linkedin}
+                label={t("linkedin_label")}
+                value={t("linkedin_value")}
+                href="https://www.linkedin.com/in/rahaf-alshaibani-bb3001329"
+                external
+              />
+            </Reveal>
           </div>
-          <p className="mt-16 text-center text-sm text-muted-foreground">{t("footer")}</p>
+          <Reveal delay={400}>
+            <p className="mt-16 text-center text-sm text-muted-foreground">{t("footer")}</p>
+          </Reveal>
         </div>
       </section>
     </div>
