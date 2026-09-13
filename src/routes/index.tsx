@@ -5,17 +5,19 @@ import { Portfolio } from "@/components/portfolio/Portfolio";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Rahaf Hamdan Alshaibani — Cybersecurity Student & Programmer" },
+      { title: "Rahaf Alshaibani | Cybersecurity Portfolio" },
       {
         name: "description",
         content:
-          "The bilingual portfolio of Rahaf Hamdan Alshaibani — a journey through programming and cybersecurity, told as a timeline.",
+          "Rahaf Alshaibani's bilingual portfolio featuring cybersecurity, programming, AI projects, training, and professional experience.",
       },
-      { property: "og:title", content: "Rahaf Hamdan Alshaibani — Portfolio" },
+      { property: "og:title", content: "Rahaf Alshaibani | Cybersecurity Portfolio" },
       {
         property: "og:description",
-        content: "A storytelling portfolio in Arabic & English.",
+        content: "A bilingual journey through cybersecurity, programming, AI projects, and training.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
     links: [
       {
