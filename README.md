@@ -12,8 +12,6 @@
   استعراض حي لرحلتي التقنية، المشاريع البرمجية، والمهارات في مجالي الأمن السيبراني والبرمجة.
 </p>
 
-[🔗 **زيارة الموقع المباشر (Live Demo)**](https://rahaf-storyteller.lovable.app)
-
 </div>
 
 ---
@@ -34,7 +32,7 @@
 | **Frontend Framework** | React.js (TypeScript) |
 | **Styling & UI** | Tailwind CSS, Lucide Icons |
 | **Build Tool** | Vite |
-| **Live Site** | [rahaf-storyteller.lovable.app](https://rahaf-storyteller.lovable.app) |
+| **Deployment** | Vercel |
 
 ---
 
