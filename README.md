@@ -40,5 +40,5 @@
 
 1. **استنساخ المستودع (Clone):**
    ```bash
-   git clone [https://github.com/rahafiihf/rahaf-portfolio.git](https://github.com/rahafiihf/rahaf-portfolio.git)
-   cd rahaf-portfolio
+   git clone https://github.com/rahafiihf/rahaf-portfolio.git
+cd rahaf-portfolio
