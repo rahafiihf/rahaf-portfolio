@@ -39,6 +39,6 @@
 ## 💻 التشغيل المحلي (Local Setup)
 
 1. **استنساخ المستودع (Clone):**
-  ```bash
-git clone [https://github.com/rahafiihf/rahaf-portfolio.git](https://github.com/rahafiihf/rahaf-portfolio.git)
+ ```bash
+git clone (https://github.com/rahafiihf/rahaf-portfolio.git)
 cd rahaf-portfolio
