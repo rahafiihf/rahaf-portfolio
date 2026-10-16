@@ -77,6 +77,17 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    title: { en: "Takamul (تكامل) — AI Team-Formation Platform", ar: "تكامل — منصة ذكية لتكوين الفرق" },
+    category: { en: "AI / Project Management", ar: "الذكاء الاصطناعي / إدارة المشاريع" },
+    contextLabel: { en: "Achievement", ar: "الإنجاز" },
+    context: { en: "Most Promising Product Award — Tiqanah BUILDx Hackathon · Role: Brand Identity & Front-End Developer", ar: "جائزة المنتج الأكثر وعداً — هاكاثون BUILDx من تقانة · الدور: الهوية البصرية ومطورة الواجهات" },
+    description: {
+      en: "Takamul is an AI-powered team-formation and skill-matching platform for PMOs, using Multi-Criteria Decision-Making (MCDM) to match the right people to the right projects.",
+      ar: "تكامل منصة مدعومة بالذكاء الاصطناعي لتكوين الفرق ومطابقة المهارات لمكاتب إدارة المشاريع، تعتمد على اتخاذ القرار متعدد المعايير (MCDM) لاختيار الأشخاص المناسبين للمشاريع المناسبة.",
+    },
+    focus: ["AI", "MCDM", "Skill Matching", "Front-End", "Brand Identity"],
+  },
+  {
     title: { en: "SANAD — Smart Banking Platform", ar: "سند — منصة مصرفية ذكية" },
     category: { en: "FinTech / AI", ar: "التقنية المالية / الذكاء الاصطناعي" },
     contextLabel: { en: "Achievement", ar: "الإنجاز" },
@@ -169,6 +180,7 @@ export const programs: Program[] = [
 ];
 
 export const achievements: Localized[] = [
+  { en: "Most Promising Product Award — Tiqanah BUILDx Hackathon with Takamul.", ar: "جائزة المنتج الأكثر وعداً في هاكاثون BUILDx من تقانة بمشروع تكامل." },
   {
     en: "Selected among the top 140 participants from approximately 6,000 applicants for Masar Cohort 2 — Agentic AI Program.",
     ar: "تم اختياري ضمن أفضل 140 مشاركاً من نحو 6,000 متقدم لبرنامج مسار، الدفعة الثانية — برنامج الذكاء الاصطناعي الوكيلي.",
