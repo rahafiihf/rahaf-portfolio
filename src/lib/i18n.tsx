@@ -33,7 +33,8 @@ const en = {
   location_value: "Riyadh, Saudi Arabia",
   footer: "© 2026 Rahaf Alshaibani. Built with passion.",
   switch_lang: "عربي",
-  cv_button: "View / Download CV",
+  cv_view: "View CV",
+  cv_download: "Download CV",
 };
 
 const ar: typeof en = {
@@ -67,7 +68,8 @@ const ar: typeof en = {
   location_value: "الرياض، المملكة العربية السعودية",
   footer: "© 2026 رهف الشيباني. صُنع بشغف.",
   switch_lang: "English",
-  cv_button: "عرض / تحميل السيرة الذاتية",
+  cv_view: "عرض السيرة الذاتية",
+  cv_download: "تحميل السيرة الذاتية",
 };
 
 const dicts = { en, ar };
