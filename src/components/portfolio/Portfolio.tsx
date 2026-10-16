@@ -15,6 +15,8 @@ import {
   Shield,
   Sparkles,
   User,
+  Eye,
+  Download,
 } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { achievements, journey, pick, programs, projects, skillCategories } from "@/lib/portfolio-data";
@@ -38,7 +40,13 @@ export function Portfolio() {
   ];
 
   return (
-    <div className="min-h-screen bg-background text-foreground" dir={dir}>
+    <div className="relative min-h-screen bg-background text-foreground" dir={dir}>
+      <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden="true">
+        <div className="absolute inset-0 grid-bg" />
+        <Shield className="absolute left-[15%] top-24 h-20 w-20 text-primary opacity-10 animate-float" />
+        <Code className="absolute bottom-32 right-[20%] h-16 w-16 text-accent opacity-10 animate-float [animation-delay:1s]" />
+        <CodeXml className="absolute bottom-20 right-10 h-24 w-24 text-primary opacity-10 animate-float [animation-delay:2s]" />
+      </div>
       <header className="fixed inset-x-0 top-0 z-40 border-b border-border/40 bg-background/80 backdrop-blur-xl">
         <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-3 md:px-6 md:py-5">
           <nav className="no-scrollbar flex min-w-0 flex-1 items-center gap-5 overflow-x-auto whitespace-nowrap text-xs md:gap-7 md:text-sm" aria-label="Portfolio sections">
@@ -59,14 +67,8 @@ export function Portfolio() {
         </div>
       </header>
 
-      <main>
-        <section id="top" className="relative flex min-h-screen items-center justify-center overflow-hidden bg-hero pt-20">
-          <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-            <Shield className="absolute left-[15%] top-20 h-20 w-20 text-primary opacity-10 animate-float" />
-            <Code className="absolute bottom-32 right-[20%] h-16 w-16 text-accent opacity-10 animate-float [animation-delay:1s]" />
-            <CodeXml className="absolute bottom-20 right-10 h-24 w-24 text-primary opacity-10" />
-            <div className="absolute inset-0 grid-bg" />
-          </div>
+      <main className="relative z-10">
+        <section id="top" className="relative flex min-h-screen items-center justify-center overflow-hidden pt-20">
           <div className="relative z-10 max-w-4xl px-6 text-center">
             <Reveal><p className="mb-6 font-body text-sm uppercase tracking-[0.3em] text-primary">{t("hero_eyebrow")}</p></Reveal>
             <Reveal delay={120}><h1 className="mb-6 text-5xl font-bold md:text-7xl"><span className="text-gradient-gold">{t("hero_name")}</span></h1></Reveal>
@@ -76,7 +78,12 @@ export function Portfolio() {
                 <span className="typing-cursor text-foreground/75"><Typing phrases={[t("hero_tagline")]} /></span>
               </div>
             </Reveal>
-            <Reveal delay={400}><a href={cvAsset.url} target="_blank" rel="noopener noreferrer" download="Rahaf_Alshaibani_CV.pdf" className="mb-10 inline-flex items-center gap-2 rounded-full border border-primary/50 bg-primary/10 px-6 py-3 font-semibold text-primary transition hover:bg-primary hover:text-primary-foreground">{t("cv_button")}</a></Reveal>
+            <Reveal delay={400}>
+              <div className="mb-10 flex flex-wrap items-center justify-center gap-3">
+                <a href={cvAsset.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-primary/50 px-6 py-3 font-semibold transition bg-primary text-primary-foreground hover:opacity-90"><Eye className="h-4 w-4" />{t("cv_view")}</a>
+                <a href={cvAsset.url} download="Rahaf_Alshaibani_CV.pdf" className="inline-flex items-center gap-2 rounded-full border border-primary/50 px-6 py-3 font-semibold transition bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground"><Download className="h-4 w-4" />{t("cv_download")}</a>
+              </div>
+            </Reveal>
             <Reveal delay={480}><a href="#journey" aria-label="Scroll to journey" className="inline-block animate-float"><ChevronDown className="mx-auto h-8 w-8 text-primary" /></a></Reveal>
           </div>
         </section>
