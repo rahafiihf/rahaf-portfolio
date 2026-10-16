@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { achievements, journey, pick, programs, projects, skillCategories } from "@/lib/portfolio-data";
+import cvAsset from "@/assets/cv.pdf.asset.json";
 import { Typing } from "./Typing";
 import { Reveal } from "./Reveal";
 
@@ -75,6 +76,7 @@ export function Portfolio() {
                 <span className="typing-cursor text-foreground/75"><Typing phrases={[t("hero_tagline")]} /></span>
               </div>
             </Reveal>
+            <Reveal delay={400}><a href={cvAsset.url} target="_blank" rel="noopener noreferrer" download="Rahaf_Alshaibani_CV.pdf" className="mb-10 inline-flex items-center gap-2 rounded-full border border-primary/50 bg-primary/10 px-6 py-3 font-semibold text-primary transition hover:bg-primary hover:text-primary-foreground">{t("cv_button")}</a></Reveal>
             <Reveal delay={480}><a href="#journey" aria-label="Scroll to journey" className="inline-block animate-float"><ChevronDown className="mx-auto h-8 w-8 text-primary" /></a></Reveal>
           </div>
         </section>
@@ -216,7 +218,7 @@ export function Portfolio() {
           <div className="mx-auto max-w-3xl">
             <SectionTitle>{t("contact_title")}</SectionTitle>
             <div className="grid gap-4 md:grid-cols-2">
-              <Reveal variant="left"><ContactRow icon={Mail} label={t("email_label")} value="rahaf.ryi@gmail.com" href="mailto:rahaf.ryi@gmail.com" /></Reveal>
+              <Reveal variant="left"><ContactRow icon={Mail} label={t("email_label")} value="rahafauii@gmail.com" href="mailto:rahafauii@gmail.com" /></Reveal>
               <Reveal delay={80} variant="right"><ContactRow icon={Phone} label={t("phone_label")} value="+966501780242" href="tel:+966501780242" /></Reveal>
               <Reveal delay={160} variant="left"><ContactRow icon={Linkedin} label={t("linkedin_label")} value={t("linkedin_value")} href="https://www.linkedin.com/in/rahaf-alshaibani-bb3001329" external /></Reveal>
               <Reveal delay={240} variant="right"><ContactRow icon={Github} label={t("github_label")} value={t("github_value")} href="https://github.com/rahafiihf" external /></Reveal>
