@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { achievements, journey, pick, programs, projects, skillCategories } from "@/lib/portfolio-data";
-import cvAsset from "@/assets/cv.pdf.asset.json";
+const cvAsset = { url: "/downloads/Rahaf_Alshaibani_CV.pdf" };
 import { Typing } from "./Typing";
 import { Reveal } from "./Reveal";
 
