@@ -35,6 +35,7 @@ const en = {
   switch_lang: "عربي",
   cv_view: "View CV",
   cv_download: "Download CV",
+  cv_close: "Close",
 };
 
 const ar: typeof en = {
@@ -70,6 +71,7 @@ const ar: typeof en = {
   switch_lang: "English",
   cv_view: "عرض السيرة الذاتية",
   cv_download: "تحميل السيرة الذاتية",
+  cv_close: "إغلاق",
 };
 
 const dicts = { en, ar };

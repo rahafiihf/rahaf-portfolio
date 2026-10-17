@@ -17,18 +17,24 @@ import {
   User,
   Eye,
   Download,
+  X,
 } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useI18n } from "@/lib/i18n";
 import { achievements, journey, pick, programs, projects, skillCategories } from "@/lib/portfolio-data";
-const cvAsset = { url: "/downloads/Rahaf_Alshaibani_CV.pdf" };
 import { Typing } from "./Typing";
 import { Reveal } from "./Reveal";
+
+const CV_URL = "/downloads/Rahaf_Alshaibani_CV.pdf";
+const CV_FILE = "Rahaf_Alshaibani_CV.pdf";
 
 const journeyIcons = { sparkles: Sparkles, book: BookOpen, code: CodeXml, shield: Shield };
 const skillIcons = [CodeXml, Code, Database, Sparkles, Shield];
 
 export function Portfolio() {
   const { t, lang, toggle, dir } = useI18n();
+  const [cvBlobUrl, setCvBlobUrl] = useState<string | null>(null);
+  const [cvViewer, setCvViewer] = useState(false);
   const navItems = [
     { id: "journey", label: t("nav_journey") },
     { id: "about", label: t("nav_about") },
@@ -38,6 +44,34 @@ export function Portfolio() {
     { id: "achievements", label: t("nav_achievements") },
     { id: "contact", label: t("nav_contact") },
   ];
+
+  // Load the CV once so "View CV" can open the real document instantly.
+  useEffect(() => {
+    let alive = true;
+    let objectUrl: string | null = null;
+    fetch(CV_URL)
+      .then((r) => (r.ok ? r.blob() : Promise.reject(new Error(`CV ${r.status}`))))
+      .then((blob) => {
+        objectUrl = URL.createObjectURL(blob);
+        if (alive) setCvBlobUrl(objectUrl);
+        else URL.revokeObjectURL(objectUrl);
+      })
+      .catch(() => {});
+    return () => {
+      alive = false;
+      if (objectUrl) URL.revokeObjectURL(objectUrl);
+    };
+  }, []);
+
+  const openCV = () => {
+    const url = cvBlobUrl ?? CV_URL;
+    const tab = window.open("", "_blank");
+    if (tab) {
+      tab.location.href = url;
+      return;
+    }
+    setCvViewer(true);
+  };
 
   return (
     <div className="relative min-h-screen bg-background text-foreground" dir={dir}>
@@ -80,8 +114,8 @@ export function Portfolio() {
             </Reveal>
             <Reveal delay={400}>
               <div className="mb-10 flex flex-wrap items-center justify-center gap-3">
-                <a href={cvAsset.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-primary/50 px-6 py-3 font-semibold transition bg-primary text-primary-foreground hover:opacity-90"><Eye className="h-4 w-4" />{t("cv_view")}</a>
-                <a href={cvAsset.url} download="Rahaf_Alshaibani_CV.pdf" className="inline-flex items-center gap-2 rounded-full border border-primary/50 px-6 py-3 font-semibold transition bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground"><Download className="h-4 w-4" />{t("cv_download")}</a>
+                <button type="button" onClick={openCV} className="inline-flex items-center gap-2 rounded-full border border-primary/50 px-6 py-3 font-semibold transition bg-primary text-primary-foreground hover:opacity-90"><Eye className="h-4 w-4" />{t("cv_view")}</button>
+                <a href={CV_URL} download={CV_FILE} className="inline-flex items-center gap-2 rounded-full border border-primary/50 px-6 py-3 font-semibold transition bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground"><Download className="h-4 w-4" />{t("cv_download")}</a>
               </div>
             </Reveal>
             <Reveal delay={480}><a href="#journey" aria-label="Scroll to journey" className="inline-block animate-float"><ChevronDown className="mx-auto h-8 w-8 text-primary" /></a></Reveal>
@@ -235,12 +269,31 @@ export function Portfolio() {
           </div>
         </section>
       </main>
+
+      {cvViewer && cvBlobUrl && (
+        <div className="fixed inset-0 z-50 flex flex-col bg-background/95 backdrop-blur-sm" role="dialog" aria-modal="true" aria-label={t("cv_view")}>
+          <div className="flex items-center justify-between gap-3 border-b border-border/40 px-4 py-3">
+            <span className="truncate text-sm font-semibold text-foreground">{CV_FILE}</span>
+            <div className="flex shrink-0 items-center gap-2">
+              <a href={cvBlobUrl} download={CV_FILE} className="inline-flex items-center gap-2 rounded-full border border-primary/50 px-4 py-2 text-xs font-medium text-primary transition hover:bg-primary hover:text-primary-foreground"><Download className="h-4 w-4" />{t("cv_download")}</a>
+              <button type="button" onClick={() => setCvViewer(false)} aria-label={t("cv_close")} className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-xs font-medium text-muted-foreground transition hover:border-primary hover:text-primary"><X className="h-4 w-4" />{t("cv_close")}</button>
+            </div>
+          </div>
+          <iframe title={CV_FILE} src={cvBlobUrl} className="min-h-0 w-full flex-1 border-0 bg-card" />
+        </div>
+      )}
     </div>
   );
 }
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return <Reveal><h2 className="section-heading"><span className="text-gradient-gold">{children}</span></h2></Reveal>;
+}
+
+function openExternal(href: string, event: React.MouseEvent) {
+  event.preventDefault();
+  const tab = window.open(href, "_blank", "noopener,noreferrer");
+  if (!tab) window.location.href = href;
 }
 
 function ContactRow({ icon: Icon, label, value, href, external }: { icon: typeof Mail; label: string; value: string; href?: string; external?: boolean }) {
@@ -252,5 +305,6 @@ function ContactRow({ icon: Icon, label, value, href, external }: { icon: typeof
   );
   const className = "group cyber-border card-hover flex min-h-24 items-center gap-4 rounded-lg bg-card p-5";
   if (!href) return <div className={className}>{content}</div>;
-  return <a href={href} target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined} className={className}>{content}</a>;
+  if (external) return <a href={href} target="_blank" rel="noopener noreferrer" onClick={(e) => openExternal(href, e)} className={className}>{content}</a>;
+  return <a href={href} className={className}>{content}</a>;
 }
