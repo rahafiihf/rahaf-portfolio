@@ -50,7 +50,8 @@ export function CvViewer({ blobUrl, onClose }: { blobUrl: string | null; onClose
           if (cancelled) return;
         }
         setStatus("ready");
-      } catch {
+      } catch (error) {
+        console.error("CV viewer:", error);
         if (!cancelled) setStatus("error");
       }
     })();
