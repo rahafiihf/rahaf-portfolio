@@ -46,7 +46,9 @@ export function CvViewer({ blobUrl, onClose }: { blobUrl: string | null; onClose
           canvas.className = "w-full rounded-md bg-white shadow-lg";
           box.appendChild(canvas);
 
-          await page.render({ canvas, viewport }).promise;
+          const context = canvas.getContext("2d");
+          if (!context) throw new Error("Canvas unavailable");
+          await page.render({ canvasContext: context, viewport }).promise;
           if (cancelled) return;
         }
         setStatus("ready");
