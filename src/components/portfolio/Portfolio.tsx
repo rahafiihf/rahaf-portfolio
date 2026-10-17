@@ -17,13 +17,13 @@ import {
   User,
   Eye,
   Download,
-  X,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useI18n } from "@/lib/i18n";
 import { achievements, journey, pick, programs, projects, skillCategories } from "@/lib/portfolio-data";
 import { Typing } from "./Typing";
 import { Reveal } from "./Reveal";
+import { CvViewer } from "./CvViewer";
 
 const CV_URL = "/downloads/Rahaf_Alshaibani_CV.pdf";
 const CV_FILE = "Rahaf_Alshaibani_CV.pdf";
@@ -63,15 +63,7 @@ export function Portfolio() {
     };
   }, []);
 
-  const openCV = () => {
-    const url = cvBlobUrl ?? CV_URL;
-    const tab = window.open("", "_blank");
-    if (tab) {
-      tab.location.href = url;
-      return;
-    }
-    setCvViewer(true);
-  };
+  const openCV = () => setCvViewer(true);
 
   return (
     <div className="relative min-h-screen bg-background text-foreground" dir={dir}>
@@ -270,18 +262,7 @@ export function Portfolio() {
         </section>
       </main>
 
-      {cvViewer && cvBlobUrl && (
-        <div className="fixed inset-0 z-50 flex flex-col bg-background/95 backdrop-blur-sm" role="dialog" aria-modal="true" aria-label={t("cv_view")}>
-          <div className="flex items-center justify-between gap-3 border-b border-border/40 px-4 py-3">
-            <span className="truncate text-sm font-semibold text-foreground">{CV_FILE}</span>
-            <div className="flex shrink-0 items-center gap-2">
-              <a href={cvBlobUrl} download={CV_FILE} className="inline-flex items-center gap-2 rounded-full border border-primary/50 px-4 py-2 text-xs font-medium text-primary transition hover:bg-primary hover:text-primary-foreground"><Download className="h-4 w-4" />{t("cv_download")}</a>
-              <button type="button" onClick={() => setCvViewer(false)} aria-label={t("cv_close")} className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-xs font-medium text-muted-foreground transition hover:border-primary hover:text-primary"><X className="h-4 w-4" />{t("cv_close")}</button>
-            </div>
-          </div>
-          <iframe title={CV_FILE} src={cvBlobUrl} className="min-h-0 w-full flex-1 border-0 bg-card" />
-        </div>
-      )}
+      {cvViewer && <CvViewer blobUrl={cvBlobUrl} onClose={() => setCvViewer(false)} />}
     </div>
   );
 }
