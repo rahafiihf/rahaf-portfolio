@@ -37,7 +37,7 @@ export function CvViewer({ blobUrl, onClose }: { blobUrl: string | null; onClose
         for (let index = 1; index <= doc.numPages; index += 1) {
           const page = await doc.getPage(index);
           const base = page.getViewport({ scale: 1 });
-          const scale = Math.min(2, (width * dpr) / base.width);
+          const scale = Math.min(3, Math.max(2, (width * dpr) / base.width));
           const viewport = page.getViewport({ scale });
 
           const canvas = document.createElement("canvas");
