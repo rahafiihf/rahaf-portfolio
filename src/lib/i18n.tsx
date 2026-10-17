@@ -36,6 +36,9 @@ const en = {
   cv_view: "View CV",
   cv_download: "Download CV",
   cv_close: "Close",
+  cv_open_tab: "Open in new tab",
+  cv_loading: "Loading CV…",
+  cv_error: "The CV could not be loaded. Please try the download button.",
 };
 
 const ar: typeof en = {
@@ -72,6 +75,9 @@ const ar: typeof en = {
   cv_view: "عرض السيرة الذاتية",
   cv_download: "تحميل السيرة الذاتية",
   cv_close: "إغلاق",
+  cv_open_tab: "فتح في تبويب جديد",
+  cv_loading: "جارٍ تحميل السيرة الذاتية…",
+  cv_error: "تعذّر تحميل السيرة الذاتية. جرّب زر التحميل.",
 };
 
 const dicts = { en, ar };
