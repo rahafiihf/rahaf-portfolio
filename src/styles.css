@@ -205,3 +205,8 @@
   }
   .animate-glow-pulse { animation: glow-pulse 2.5s ease-in-out infinite; }
 }
+
+@layer utilities {
+  .no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+  .no-scrollbar::-webkit-scrollbar { display: none; width: 0; height: 0; }
+}
