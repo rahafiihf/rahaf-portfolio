@@ -1,7 +1,6 @@
 import {
   Award,
   BookOpen,
-  ChevronDown,
   Code,
   CodeXml,
   Database,
@@ -14,14 +13,13 @@ import {
   Phone,
   Shield,
   Sparkles,
-  User,
   Eye,
   Download,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useI18n } from "@/lib/i18n";
 import { achievements, journey, pick, programs, projects, skillCategories } from "@/lib/portfolio-data";
-import { Typing } from "./Typing";
+import { Button } from "@/components/ui/button";
 import { Reveal } from "./Reveal";
 import { CvViewer } from "./CvViewer";
 
@@ -82,35 +80,35 @@ export function Portfolio() {
               </a>
             ))}
           </nav>
-          <button
+          <Button
+            variant="outline"
             onClick={toggle}
-            className="inline-flex shrink-0 items-center gap-2 rounded-full border border-border bg-secondary/40 px-3 py-2 text-xs font-medium text-foreground transition hover:border-primary hover:text-primary md:px-4"
+            className="inline-flex shrink-0 items-center gap-2 rounded-md border border-border bg-secondary/40 px-3 py-2 text-xs font-medium text-foreground transition hover:border-primary hover:text-primary md:px-4"
             aria-label="Toggle language"
           >
             <Languages size={14} className="text-primary" />
             {t("switch_lang")}
-          </button>
+          </Button>
         </div>
       </header>
 
       <main className="relative z-10">
-        <section id="top" className="relative flex min-h-screen items-center justify-center overflow-hidden pt-20">
+        <section id="top" className="portfolio-intro relative flex items-center justify-center overflow-hidden pb-16 pt-36">
           <div className="relative z-10 max-w-4xl px-6 text-center">
-            <Reveal><p className="mb-6 font-body text-sm uppercase tracking-[0.3em] text-primary">{t("hero_eyebrow")}</p></Reveal>
-            <Reveal delay={120}><h1 className="mb-6 text-5xl font-bold md:text-7xl"><span className="text-gradient-gold">{t("hero_name")}</span></h1></Reveal>
+            <Reveal><p className="mb-7 inline-flex items-center gap-2.5 rounded-full border border-availability/30 bg-availability/10 px-4 py-2 text-sm font-medium text-availability"><span className="h-1.5 w-1.5 rounded-full bg-availability" />{t("training_status")}</p></Reveal>
+            <Reveal delay={120}><h1 className="mb-6 text-5xl font-semibold md:text-7xl"><span className="text-foreground">{t("hero_name")}</span></h1></Reveal>
             <Reveal delay={240}><p className="mb-8 text-xl text-muted-foreground md:text-2xl">{t("hero_title")}</p></Reveal>
             <Reveal delay={360}>
-              <div className="mx-auto mb-12 min-h-24 max-w-3xl text-base leading-relaxed md:text-lg">
-                <span className="typing-cursor text-foreground/75"><Typing phrases={[t("hero_tagline")]} /></span>
-              </div>
+              <p className="mx-auto mb-8 max-w-3xl text-base leading-8 text-muted-foreground md:text-lg">{t("hero_tagline")}</p>
+              <p className="mb-8 text-sm font-medium text-foreground/90">{t("training_body")}</p>
             </Reveal>
             <Reveal delay={400}>
               <div className="mb-10 flex flex-wrap items-center justify-center gap-3">
-                <button type="button" onClick={openCV} className="inline-flex items-center gap-2 rounded-full border border-primary/50 px-6 py-3 font-semibold transition bg-primary text-primary-foreground hover:opacity-90"><Eye className="h-4 w-4" />{t("cv_view")}</button>
-                <a href={CV_URL} download={CV_FILE} className="inline-flex items-center gap-2 rounded-full border border-primary/50 px-6 py-3 font-semibold transition bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground"><Download className="h-4 w-4" />{t("cv_download")}</a>
+                <Button size="lg" onClick={openCV} className="h-12"><Eye />{t("cv_view")}</Button>
+                <Button asChild variant="outline" size="lg" className="h-12"><a href={CV_URL} download={CV_FILE}><Download />{t("cv_download")}</a></Button>
               </div>
             </Reveal>
-            <Reveal delay={480}><a href="#journey" aria-label="Scroll to journey" className="inline-block animate-float"><ChevronDown className="mx-auto h-8 w-8 text-primary" /></a></Reveal>
+            
           </div>
         </section>
 
@@ -151,8 +149,7 @@ export function Portfolio() {
           <div className="mx-auto max-w-3xl">
             <SectionTitle>{t("about_title")}</SectionTitle>
             <Reveal delay={120}>
-              <div className="cyber-border card-hover relative rounded-lg bg-card p-8 md:p-12">
-                <div className="absolute -top-5 left-1/2 flex h-10 w-10 -translate-x-1/2 items-center justify-center rounded-full bg-primary shadow-gold"><User className="h-5 w-5 text-primary-foreground" /></div>
+              <div className="border-t border-border pt-8">
                 <p className="mt-4 whitespace-pre-line text-center text-base leading-8 text-foreground/80 md:text-lg">{t("about_body")}</p>
               </div>
             </Reveal>
@@ -188,9 +185,9 @@ export function Portfolio() {
             <SectionTitle>{t("projects_title")}</SectionTitle>
             <div className="grid gap-6 md:grid-cols-2">
               {projects.map((project, index) => (
-                <Reveal key={project.title.en} delay={(index % 3) * 90} variant={index % 2 === 0 ? "left" : "right"} className={index === projects.length - 1 ? "md:col-span-2 md:mx-auto md:w-1/2" : ""}>
-                  <article className="group cyber-border card-hover flex h-full flex-col rounded-lg bg-card p-6">
-                    <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-primary">{pick(project.category, lang)}</p>
+                <Reveal key={project.title.en} delay={(index % 3) * 90} variant={index % 2 === 0 ? "left" : "right"} className="h-full">
+                  <article className="group cyber-border card-hover flex h-full flex-col rounded-lg bg-card p-7 md:p-8">
+                    <p className="mb-3 text-xs font-bold uppercase text-primary">{pick(project.category, lang)}</p>
                     <h3 className="mb-4 text-xl font-bold text-foreground transition-colors group-hover:text-primary">{pick(project.title, lang)}</h3>
                     {project.context && project.contextLabel && (
                       <div className="mb-4 border-s-2 border-primary/50 ps-3 text-sm">
@@ -250,6 +247,7 @@ export function Portfolio() {
         <section id="contact" className="scroll-mt-16 px-6 py-24">
           <div className="mx-auto max-w-3xl">
             <SectionTitle>{t("contact_title")}</SectionTitle>
+            <Reveal><div className="mb-10 border-b border-border pb-8 text-center"><p className="mb-3 text-lg font-semibold text-availability">{t("training_status")}</p><p className="mb-5 text-muted-foreground">{t("training_body")}</p><Button asChild size="lg"><a href="mailto:rahafauii@gmail.com"><Mail />{t("training_cta")}</a></Button></div></Reveal>
             <div className="grid gap-4 md:grid-cols-2">
               <Reveal variant="left"><ContactRow icon={Mail} label={t("email_label")} value="rahafauii@gmail.com" href="mailto:rahafauii@gmail.com" /></Reveal>
               <Reveal delay={80} variant="right"><ContactRow icon={Phone} label={t("phone_label")} value="+966501780242" href="tel:+966501780242" /></Reveal>
