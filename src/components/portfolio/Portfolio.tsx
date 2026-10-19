@@ -96,6 +96,7 @@ export function Portfolio() {
       <main className="relative z-10">
         <section id="top" className="relative flex min-h-screen items-center justify-center overflow-hidden pt-20">
           <div className="relative z-10 max-w-4xl px-6 text-center">
+            <Reveal><a href="#contact" className="mb-8 inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-4 py-1.5 text-xs font-semibold text-primary backdrop-blur"><span className="relative flex h-2 w-2"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" /><span className="relative inline-flex h-2 w-2 rounded-full bg-primary" /></span>{t("avail_badge")}</a></Reveal>
             <Reveal><p className="mb-6 font-body text-sm uppercase tracking-[0.3em] text-primary">{t("hero_eyebrow")}</p></Reveal>
             <Reveal delay={120}><h1 className="mb-6 text-5xl font-bold md:text-7xl"><span className="text-gradient-gold">{t("hero_name")}</span></h1></Reveal>
             <Reveal delay={240}><p className="mb-8 text-xl text-muted-foreground md:text-2xl">{t("hero_title")}</p></Reveal>
@@ -186,9 +187,9 @@ export function Portfolio() {
         <section id="projects" className="scroll-mt-16 px-6 py-24">
           <div className="mx-auto max-w-6xl">
             <SectionTitle>{t("projects_title")}</SectionTitle>
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {projects.map((project, index) => (
-                <Reveal key={project.title.en} delay={(index % 3) * 90} variant={index % 2 === 0 ? "left" : "right"} className={index === projects.length - 1 ? "md:col-span-2 md:mx-auto md:w-1/2" : ""}>
+                <Reveal key={project.title.en} delay={(index % 3) * 90} variant={index % 2 === 0 ? "left" : "right"} className="h-full">
                   <article className="group cyber-border card-hover flex h-full flex-col rounded-lg bg-card p-6">
                     <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-primary">{pick(project.category, lang)}</p>
                     <h3 className="mb-4 text-xl font-bold text-foreground transition-colors group-hover:text-primary">{pick(project.title, lang)}</h3>
@@ -250,6 +251,14 @@ export function Portfolio() {
         <section id="contact" className="scroll-mt-16 px-6 py-24">
           <div className="mx-auto max-w-3xl">
             <SectionTitle>{t("contact_title")}</SectionTitle>
+            <Reveal>
+              <div className="cyber-border mb-10 rounded-2xl bg-card/80 p-8 text-center shadow-elegant backdrop-blur md:p-10">
+                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary shadow-gold"><GraduationCap className="h-6 w-6 text-primary-foreground" /></div>
+                <h3 className="mb-3 text-2xl font-bold md:text-3xl"><span className="text-gradient-gold">{t("avail_title")}</span></h3>
+                <p className="mx-auto mb-6 max-w-xl leading-8 text-foreground/80">{t("avail_body")}</p>
+                <a href="mailto:rahafauii@gmail.com" className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 font-semibold text-primary-foreground transition hover:opacity-90"><Mail className="h-4 w-4" />{t("avail_cta")}</a>
+              </div>
+            </Reveal>
             <div className="grid gap-4 md:grid-cols-2">
               <Reveal variant="left"><ContactRow icon={Mail} label={t("email_label")} value="rahafauii@gmail.com" href="mailto:rahafauii@gmail.com" /></Reveal>
               <Reveal delay={80} variant="right"><ContactRow icon={Phone} label={t("phone_label")} value="+966501780242" href="tel:+966501780242" /></Reveal>
